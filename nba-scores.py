@@ -37,9 +37,11 @@ with urllib.request.urlopen(scores_url) as f:
     scores = []
     for game in games:
         home = game['home']['abbreviation'].strip()
-        home_score = int(game['home']['score'].strip())
+        home_score = game['home']['score'].strip()
+        home_score = 0 if home_score == '' else int(home_score)
         away = game['visitor']['abbreviation'].strip()
-        away_score = int(game['visitor']['score'].strip())
+        away_score = game['visitor']['score'].strip()
+        away_score = 0 if away_score == '' else int(away_score)
         period = game['period_time']['period_status'].strip()
         time_left = game['period_time']['game_clock'].strip()
         game_date = game['date'].strip()
